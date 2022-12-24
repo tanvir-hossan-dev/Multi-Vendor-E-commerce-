@@ -11,7 +11,6 @@ const Categories = () => {
           <Categorie />
         </div>
       </div>
-      <Footer />
     </>
   );
 };
