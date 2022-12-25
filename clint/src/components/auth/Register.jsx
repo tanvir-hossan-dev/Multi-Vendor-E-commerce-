@@ -1,6 +1,5 @@
 import React from "react";
-import { Button, Input } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Button, Input, Select, Option } from "@material-tailwind/react";
 
 const Register = () => {
   return (
@@ -14,22 +13,29 @@ const Register = () => {
           <Input color="blue" required type="email" variant="outlined" label="E-mail" />
         </div>
         <div className="w-full py-[10px]">
-          <Input color="blue" required type="password" variant="outlined" label="Password" />
+          <Input color="blue" required type="number" variant="outlined" label="Number" />
         </div>
         <div className="w-full py-[10px]">
-          <Input color="blue" required type="password" variant="outlined" label="Confirm Password" />
+          <Select label="Select Version">
+            <Option>Seller</Option>
+            <Option>User</Option>
+          </Select>
         </div>
+        <div className="w-full py-[10px]">
+          <Input color="blue" required type="password" variant="outlined" label="Password" />
+        </div>
+
         <div>
           <Button className="w-full py-[10px] my-[15px]"> Submit</Button>
         </div>
-        <div>
+        {/* <div>
           <p className="text-gray-800 text-right ">
             Singin Account?
             <Link className="text-black underline ml-[10px]" to="/login">
               Login{" "}
             </Link>
           </p>
-        </div>
+        </div> */}
       </form>
     </div>
   );

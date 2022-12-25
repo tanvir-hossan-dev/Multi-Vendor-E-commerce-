@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { BsCartCheckFill } from "react-icons/bs";
 
 const Navbar = () => {
   return (
@@ -18,7 +19,10 @@ const Navbar = () => {
             <Link to="/categories">Categories</Link>
           </li>
           <li>
-            <a>Cart</a>
+            <Link className="text-[22px]" to="/cart">
+              {" "}
+              <BsCartCheckFill />
+            </Link>
           </li>
         </ul>
         <div className="dropdown dropdown-end">
