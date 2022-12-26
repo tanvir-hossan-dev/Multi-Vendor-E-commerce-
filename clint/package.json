@@ -10,12 +10,14 @@
   },
   "dependencies": {
     "@material-tailwind/react": "^1.2.4",
+    "@reduxjs/toolkit": "^1.9.1",
     "daisyui": "^2.46.0",
     "firebase": "^9.15.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-phone-number-input": "^3.2.13",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.0",
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1"
