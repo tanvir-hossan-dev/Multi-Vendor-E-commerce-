@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Input, Select, Option } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   return (
@@ -28,14 +29,14 @@ const Register = () => {
         <div>
           <Button className="w-full py-[10px] my-[15px]"> Submit</Button>
         </div>
-        {/* <div>
+        <div>
           <p className="text-gray-800 text-right ">
             Singin Account?
             <Link className="text-black underline ml-[10px]" to="/login">
               Login{" "}
             </Link>
           </p>
-        </div> */}
+        </div>
       </form>
     </div>
   );

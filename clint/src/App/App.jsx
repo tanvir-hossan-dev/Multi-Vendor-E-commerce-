@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "../components/auth/Login";
 import Register from "../components/auth/Register";
 import SignInWithNumber from "../components/auth/SignInWithNumber";
 import Cart from "../components/Cart/Cart";
@@ -14,6 +15,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/signinwithphone" element={<SignInWithNumber />} />
         <Route path="/" element={<Home />} />
         <Route path="/categories" element={<Categories />} />
