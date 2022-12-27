@@ -12,8 +12,6 @@ exports.userLogin = async (req, res) => {
       return res.status(400).json({ message: "Inavalid E-mail" });
     }
 
-    console.log(user);
-
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {

@@ -1,8 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { BsCartCheckFill } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogedOut } from "../../Redux/features/user/userSlice";
+import gravatarUrl from "gravatar-url";
 
 const Navbar = () => {
+  const { user, accessToken } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  const location = useLocation();
+
+  console.log(location);
+
+  const hanldeLogOut = () => {
+    dispatch(userLogedOut());
+    localStorage.removeItem("Ecommerce-Auth");
+  };
+
   return (
     <div className="navbar flex justify-between bg-gray-200">
       <div>
@@ -25,27 +40,35 @@ const Navbar = () => {
             </Link>
           </li>
         </ul>
-        <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img src="https://placeimg.com/80/80/people" />
-            </div>
-          </label>
-          <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+        {user && accessToken ? (
+          <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img src={gravatarUrl(user.email)} />
+              </div>
+            </label>
+
+            <ul
+              tabIndex={0}
+              className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <a className="justify-between">{user?.name}</a>
+              </li>
+
+              <li onClick={hanldeLogOut}>
+                <a>Logout</a>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <ul className="menu menu-horizontal mr-8">
+            {" "}
             <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
+              <Link to="/signinwithphone">SignIn</Link>
             </li>
           </ul>
-        </div>
+        )}
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../Footer/Footer";
 import ReletedProducts from "../ReletedProducts/ReletedProducts";
 
 const ProductDeatils = () => {
@@ -27,6 +28,7 @@ const ProductDeatils = () => {
         </div>
       </div>
       <ReletedProducts />
+      <Footer />
     </>
   );
 };

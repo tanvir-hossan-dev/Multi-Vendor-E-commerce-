@@ -1,4 +1,5 @@
 import { apiSlice } from "../api/apiSlice";
+import { userLoggedIn } from "./userSlice";
 
 export const userApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -8,6 +9,17 @@ export const userApi = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+        const result = await queryFulfilled;
+
+        try {
+          localStorage.setItem(
+            "Ecommerce-Auth",
+            JSON.stringify({ accessToken: result.data.accessToken, user: result.data.user })
+          );
+          dispatch(userLoggedIn({ accessToken: result.data.accessToken, user: result.data.user }));
+        } catch (err) {}
+      },
     }),
     userLogin: builder.mutation({
       query: (data) => ({
@@ -15,6 +27,17 @@ export const userApi = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+        const result = await queryFulfilled;
+
+        try {
+          localStorage.setItem(
+            "Ecommerce-Auth",
+            JSON.stringify({ accessToken: result.data.accessToken, user: result.data.user })
+          );
+          dispatch(userLoggedIn({ accessToken: result.data.accessToken, user: result.data.user }));
+        } catch (err) {}
+      },
     }),
   }),
 });
