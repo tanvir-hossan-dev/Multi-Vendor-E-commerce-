@@ -10,7 +10,7 @@ const Authenticate = async (req, res, next) => {
     }
 
     const decoded = jwt.verify(token, process.env.SECRET);
-    const email = decoded.data.email;
+    const email = decoded.email;
 
     const user = await User.findOne({ email });
 
