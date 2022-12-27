@@ -14,3 +14,39 @@ exports.addProduct = async (req, res) => {
     return res.status(500).json({ message: err.message });
   }
 };
+
+exports.getProduct = async (req, res) => {
+  try {
+    const product = await Product.find();
+
+    return res.status(200).json(product);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+exports.updateProduct = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    let product = await Product.findById(id);
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+    product = await Product.findByIdAndUpdate(id, req.body, { new: true });
+    return res.status(201).json({ message: "Product update Successful", product });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+exports.deleteProduct = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Product.findByIdAndDelete(id);
+    return res.status(204).json();
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
