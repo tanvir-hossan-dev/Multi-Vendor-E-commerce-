@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { BsCartCheckFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogedOut } from "../../Redux/features/user/userSlice";
@@ -8,10 +8,6 @@ import gravatarUrl from "gravatar-url";
 const Navbar = () => {
   const { user, accessToken } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
-  const location = useLocation();
-
-  console.log(location);
 
   const hanldeLogOut = () => {
     dispatch(userLogedOut());
@@ -55,10 +51,25 @@ const Navbar = () => {
               <li>
                 <a className="justify-between">{user?.name}</a>
               </li>
+              {user.role === "Seller" && (
+                <li>
+                  <Link to="/vendordashboard" className="justify-between">
+                    Vendor Dashboard
+                  </Link>
+                </li>
+              )}
+              {user.role === "Admin" && (
+                <li>
+                  <Link to="/admindashboard" className="justify-between">
+                    Admin Dashboard
+                  </Link>
+                </li>
+              )}
 
               <li onClick={hanldeLogOut}>
                 <a>Logout</a>
               </li>
+              {}
             </ul>
           </div>
         ) : (

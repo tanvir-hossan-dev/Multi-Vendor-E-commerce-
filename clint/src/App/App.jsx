@@ -10,12 +10,11 @@ import Navbar from "../components/Navbar/Navbar";
 import ProductDeatils from "../components/ProductDeatils/ProductDeatils";
 import useAuthCheck from "../hooks/useAuthCheck";
 import { ColorRing } from "react-loader-spinner";
-import { useSelector } from "react-redux";
+import Vendordashboard from "../components/Vendor Dashboard/Vendordashboard";
+import Admindashboard from "../components/Admin Dashboard/Admindashboard";
 
 function App() {
   const authChecked = useAuthCheck();
-
-  const { user, accessToken } = useSelector((state) => state.user);
 
   return !authChecked ? (
     <div className="w-screen h-screen flex justify-center items-center">
@@ -40,6 +39,8 @@ function App() {
         <Route path="/categories" element={<Categories />} />
         <Route path="/productdeatils/:id" element={<ProductDeatils />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/vendordashboard" element={<Vendordashboard />} />
+        <Route path="/admindashboard" element={<Admindashboard />} />
       </Routes>
     </BrowserRouter>
   );
