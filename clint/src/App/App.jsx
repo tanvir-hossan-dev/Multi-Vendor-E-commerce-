@@ -12,6 +12,8 @@ import useAuthCheck from "../hooks/useAuthCheck";
 import { ColorRing } from "react-loader-spinner";
 import Vendordashboard from "../components/Vendor Dashboard/Vendordashboard";
 import Admindashboard from "../components/Admin Dashboard/Admindashboard";
+import Vendorform from "../components/Vendor Dashboard/Vendor Form/Vendorform";
+import VendorEditForm from "../components/Vendor Dashboard/Vendor Form/VendorEditForm";
 
 function App() {
   const authChecked = useAuthCheck();
@@ -41,6 +43,8 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/vendordashboard" element={<Vendordashboard />} />
         <Route path="/admindashboard" element={<Admindashboard />} />
+        <Route path="/vendorform" element={<Vendorform />} />
+        <Route path="/vendoreditform/:id" element={<VendorEditForm />} />
       </Routes>
     </BrowserRouter>
   );

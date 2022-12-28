@@ -2,8 +2,10 @@ const Product = require("../models/Product");
 
 exports.addProduct = async (req, res) => {
   req.body.userId = req.user._id;
+
   try {
     const { name, description, price, imagesUrl, category, stock } = req.body;
+
     if (!name || !description || !price || !imagesUrl || !category || !stock) {
       return res.status(404).json({ message: "Please fullfill your all input." });
     }
@@ -28,6 +30,8 @@ exports.getProduct = async (req, res) => {
 exports.updateProduct = async (req, res) => {
   const { id } = req.params;
 
+  console.log(req.body);
+
   try {
     let product = await Product.findById(id);
 
@@ -35,6 +39,7 @@ exports.updateProduct = async (req, res) => {
       return res.status(404).json({ message: "Product not found" });
     }
     product = await Product.findByIdAndUpdate(id, req.body, { new: true });
+    console.log(product);
     return res.status(201).json({ message: "Product update Successful", product });
   } catch (err) {
     return res.status(500).json({ message: err.message });
