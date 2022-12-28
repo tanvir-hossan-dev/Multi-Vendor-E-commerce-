@@ -1,29 +1,23 @@
 import { Button, Input } from "@material-tailwind/react";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useEditProductMutation, useGetProductQuery } from "../../../Redux/features/product/productApi";
+import { useNavigate } from "react-router-dom";
+import { useAddProductMutation } from "../../../Redux/features/product/productApi";
 
-const VendorEditForm = () => {
-  const { data: getProduct } = useGetProductQuery();
-
-  const { id } = useParams();
-
-  const currentProduct = getProduct?.length > 0 && getProduct?.find((item) => item._id === id);
-
+const Adminaddform = () => {
   const initialState = {
-    name: currentProduct?.name || "",
-    description: currentProduct?.description || "",
-    price: currentProduct?.price || "",
-    imagesUrl: currentProduct?.imagesUrl || "",
-    category: currentProduct?.category || "",
-    stock: currentProduct?.stock || "",
+    name: "",
+    description: "",
+    price: "",
+    imagesUrl: "",
+    category: "",
+    stock: "",
   };
 
   const [err, setErr] = useState("");
   const [inputs, setInputs] = useState({ ...initialState });
   const navigate = useNavigate();
 
-  const [editProduct, { data, isError, isSuccess }] = useEditProductMutation();
+  const [addProduct, { data, isError, isSuccess }] = useAddProductMutation();
 
   const handleOnChange = (e) => {
     setInputs({
@@ -35,26 +29,28 @@ const VendorEditForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { name, description, category, imagesUrl, price, stock } = inputs;
-    const id = currentProduct?._id;
     if (!name || !description || !category || !imagesUrl || !price || !stock) {
       setErr("Please fullfill all input");
     } else {
-      editProduct({ data: { ...inputs }, id });
+      addProduct({ ...inputs });
       setErr("");
     }
   };
 
   useEffect(() => {
+    if (isSuccess && !isError && !err) {
+      setInputs({ ...initialState });
+    }
     if (isSuccess) {
       setTimeout(() => {
-        navigate("/vendordashboard");
+        navigate("/admindashboard");
       }, 2000);
     }
-  }, [isSuccess]);
+  }, [isSuccess, isError, err]);
 
   return (
     <div className="w-[40%]  mx-auto mt-8 bg-[#f1f1f1] py-4 px-8 rounded-md ">
-      <h2 className="text-[30px] pb-[15px] text-center">Update Product</h2>
+      <h2 className="text-[30px] pb-[15px] text-center">Add Product</h2>
       <form onSubmit={handleSubmit}>
         <div className="flex w-full items-end my-4 gap-4">
           <Input label="Product Name" type="text" name="name" onChange={handleOnChange} value={inputs.name} />
@@ -110,4 +106,4 @@ const VendorEditForm = () => {
   );
 };
 
-export default VendorEditForm;
+export default Adminaddform;

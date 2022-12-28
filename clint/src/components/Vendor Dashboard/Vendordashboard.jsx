@@ -10,6 +10,8 @@ const Vendordashboard = () => {
   const { data, isSuccess, isError, error } = useGetProductQuery();
   const [deleteProduct, {}] = useDeleteProductMutation();
 
+  const products = data?.length > 0 && data?.filter((item) => item.userId === user?._id);
+
   const handleDelete = (id) => {
     deleteProduct(id);
   };
@@ -26,19 +28,21 @@ const Vendordashboard = () => {
       </div>
       <div className="overflow-x-auto">
         <table className="table  w-full">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Product Name</th>
-              <th>Price</th>
-              <th>Stock</th>
-              <th>Category</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
+          {products?.length > 0 && (
+            <thead>
+              <tr>
+                <th></th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Category</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+          )}
           <tbody>
-            {data?.length > 0 ? (
+            {products?.length > 0 ? (
               data.map((item, index) => (
                 <tr key={item._id}>
                   <th>{index + 1}</th>
@@ -60,7 +64,7 @@ const Vendordashboard = () => {
               ))
             ) : (
               <div className="alert alert-error w-full shadow-lg text-center">
-                <span>There are no porduct!</span>
+                <span>Product not found!</span>
               </div>
             )}
           </tbody>

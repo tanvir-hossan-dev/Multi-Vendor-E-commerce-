@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEditProductMutation, useGetProductQuery } from "../../../Redux/features/product/productApi";
 
-const VendorEditForm = () => {
+const Admineditform = () => {
   const { data: getProduct } = useGetProductQuery();
 
   const { id } = useParams();
@@ -47,7 +47,7 @@ const VendorEditForm = () => {
   useEffect(() => {
     if (isSuccess) {
       setTimeout(() => {
-        navigate("/vendordashboard");
+        navigate("/admindashboard");
       }, 2000);
     }
   }, [isSuccess]);
@@ -110,4 +110,4 @@ const VendorEditForm = () => {
   );
 };
 
-export default VendorEditForm;
+export default Admineditform;
