@@ -1,10 +1,11 @@
 import React from "react";
+import { Link, useParams } from "react-router-dom";
 
 const Product = ({ product }) => {
-  const { name, price, description, imagesUrl, _id, stock } = product;
-  console.log(product);
+  const { name, price, description, imagesUrl, _id, stock } = product || {};
+
   return (
-    <>
+    <Link to={`/productdeatils/${_id}`}>
       <div key={_id} className="card w-80 bg-base-100 shadow-xl overflow-hidden">
         <figure className="h-[220px]">
           <img src={imagesUrl} alt="Shoes" />
@@ -17,7 +18,7 @@ const Product = ({ product }) => {
           <p>{description}</p>
         </div>
       </div>
-    </>
+    </Link>
   );
 };
 
