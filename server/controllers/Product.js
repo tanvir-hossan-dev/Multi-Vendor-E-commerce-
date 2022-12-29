@@ -30,8 +30,6 @@ exports.getProduct = async (req, res) => {
 exports.updateProduct = async (req, res) => {
   const { id } = req.params;
 
-  console.log(req.body);
-
   try {
     let product = await Product.findById(id);
 

@@ -45,7 +45,7 @@ exports.userRegister = async (req, res) => {
     const user = new User(req.body);
     await user.save();
 
-    const accessToken = jwt.sign({ data: req.body }, process.env.SECRET, { expiresIn: "1 day" });
+    const accessToken = jwt.sign(user._doc, process.env.SECRET, { expiresIn: "1 day" });
 
     return res.status(201).json({ user, accessToken });
   } catch (err) {
