@@ -43,7 +43,7 @@ const Vendordashboard = () => {
           )}
           <tbody>
             {products?.length > 0 ? (
-              data.map((item, index) => (
+              products.map((item, index) => (
                 <tr key={item._id}>
                   <th>{index + 1}</th>
                   <td>{item.name}</td>

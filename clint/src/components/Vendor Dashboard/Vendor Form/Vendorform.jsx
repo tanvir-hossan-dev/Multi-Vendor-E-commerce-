@@ -2,16 +2,21 @@ import { Button, Input } from "@material-tailwind/react";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAddProductMutation } from "../../../Redux/features/product/productApi";
+import axios from "axios";
 
 const Vendorform = () => {
   const initialState = {
     name: "",
     description: "",
     price: "",
-    imagesUrl: "",
     category: "",
     stock: "",
   };
+
+  const api_key = import.meta.env.VITE_IMGBB_API_KEY;
+
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const [err, setErr] = useState("");
   const [inputs, setInputs] = useState({ ...initialState });
@@ -26,14 +31,27 @@ const Vendorform = () => {
     });
   };
 
+  const handleImg = (e) => {
+    setImage(e.target.files[0]);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { name, description, category, imagesUrl, price, stock } = inputs;
-    if (!name || !description || !category || !imagesUrl || !price || !stock) {
+
+    const { name, description, category, price, stock } = inputs;
+    if (!name || !description || !category || !price || !stock || !image) {
       setErr("Please fullfill all input");
     } else {
-      addProduct({ ...inputs });
-      setErr("");
+      setLoading(true);
+      const formData = new FormData();
+      formData.append("image", image);
+      const url = `https://api.imgbb.com/1/upload?key=${api_key}`;
+      axios.post(url, formData).then((res) => {
+        if (res?.data?.data?.display_url) {
+          addProduct({ ...inputs, imagesUrl: res?.data?.data?.display_url });
+          setErr("");
+        }
+      });
     }
   };
 
@@ -43,7 +61,7 @@ const Vendorform = () => {
     }
     if (isSuccess) {
       setTimeout(() => {
-        navigate("/vendordashboard");
+        navigate("/admindashboard");
       }, 2000);
     }
   }, [isSuccess, isError, err]);
@@ -68,7 +86,7 @@ const Vendorform = () => {
           <Input label="Price" type="number" name="price" onChange={handleOnChange} value={inputs.price} />
         </div>
         <div className="flex w-full items-end my-4 gap-4">
-          <Input label="Image" type="text" name="imagesUrl" onChange={handleOnChange} value={inputs.imagesUrl} />
+          <Input label="Image" type="file" name="imagesUrl" onChange={handleImg} />
         </div>
         <div className="flex w-full items-end my-4 gap-4">
           <Input
@@ -84,7 +102,7 @@ const Vendorform = () => {
         </div>
         <div>
           <Button type="submit" className=" my-4 w-full py-[10px] ">
-            Submit
+            {loading ? "Loading..." : "Submit"}
           </Button>
         </div>
       </form>

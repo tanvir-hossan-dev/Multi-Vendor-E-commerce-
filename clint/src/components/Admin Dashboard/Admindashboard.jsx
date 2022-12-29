@@ -14,7 +14,7 @@ const Admindashboard = () => {
     deleteProduct(id);
   };
 
-  const products = data?.length > 0 && data?.filter((item) => item.userId === user._id);
+  const products = data?.length > 0 && data?.filter((item) => item.userId === user?._id);
 
   console.log(products);
 
@@ -47,7 +47,7 @@ const Admindashboard = () => {
 
           <tbody>
             {products?.length > 0 ? (
-              data.map((item, index) => (
+              products.map((item, index) => (
                 <tr key={item._id}>
                   <th>{index + 1}</th>
                   <td>{item.name}</td>
@@ -57,9 +57,9 @@ const Admindashboard = () => {
                   <td>{item.stock}</td>
                   <td>{item.category}</td>
                   <td>
-                    <div className="badge badge-secondary  p-4 cursor-pointer">
-                      <Link to={`/admineditform/${item._id}`}>Edit</Link>{" "}
-                    </div>
+                    <Link to={`/admineditform/${item._id}`}>
+                      <div className="badge badge-secondary  p-4 cursor-pointer">Edit </div>
+                    </Link>
                   </td>
                   <td onClick={() => handleDelete(item._id)}>
                     <div className="badge badge-error p-4 cursor-pointer">Delete</div>

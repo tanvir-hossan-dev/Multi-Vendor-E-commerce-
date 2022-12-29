@@ -1,86 +1,20 @@
 import React from "react";
 
-const Product = () => {
+const Product = ({ product }) => {
+  const { name, price, description, imagesUrl, _id, stock } = product;
+  console.log(product);
   return (
     <>
-      <div className="card w-80 bg-base-100 shadow-xl">
-        <figure>
-          <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
+      <div key={_id} className="card w-80 bg-base-100 shadow-xl overflow-hidden">
+        <figure className="h-[220px]">
+          <img src={imagesUrl} alt="Shoes" />
         </figure>
         <div className="card-body">
           <h2 className="card-title">
-            Shoes!
-            <div className="badge badge-secondary">NEW</div>
+            {name} <div className="badge badge-primary">{stock}</div>
           </h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-end">
-            <div className="badge badge-outline">Fashion</div>
-            <div className="badge badge-outline">Products</div>
-          </div>
-        </div>
-      </div>
-      <div className="card w-80 bg-base-100 shadow-xl">
-        <figure>
-          <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">
-            Shoes!
-            <div className="badge badge-secondary">NEW</div>
-          </h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-end">
-            <div className="badge badge-outline">Fashion</div>
-            <div className="badge badge-outline">Products</div>
-          </div>
-        </div>
-      </div>
-      <div className="card w-80 bg-base-100 shadow-xl">
-        <figure>
-          <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">
-            Shoes!
-            <div className="badge badge-secondary">NEW</div>
-          </h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-end">
-            <div className="badge badge-outline">Fashion</div>
-            <div className="badge badge-outline">Products</div>
-          </div>
-        </div>
-      </div>
-      <div className="card w-80 bg-base-100 shadow-xl">
-        <figure>
-          <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">
-            Shoes!
-            <div className="badge badge-secondary">NEW</div>
-          </h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-end">
-            <div className="badge badge-outline">Fashion</div>
-            <div className="badge badge-outline">Products</div>
-          </div>
-        </div>
-      </div>
-      <div className="card w-80 bg-base-100 shadow-xl">
-        <figure>
-          <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">
-            Shoes!
-            <div className="badge badge-secondary">NEW</div>
-          </h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-end">
-            <div className="badge badge-outline">Fashion</div>
-            <div className="badge badge-outline">Products</div>
-          </div>
+          <h2 className="card-title">{price} tk</h2>
+          <p>{description}</p>
         </div>
       </div>
     </>

@@ -2,6 +2,7 @@ import { Button, Input } from "@material-tailwind/react";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEditProductMutation, useGetProductQuery } from "../../../Redux/features/product/productApi";
+import axios from "axios";
 
 const Admineditform = () => {
   const { data: getProduct } = useGetProductQuery();
@@ -14,16 +15,18 @@ const Admineditform = () => {
     name: currentProduct?.name || "",
     description: currentProduct?.description || "",
     price: currentProduct?.price || "",
-    imagesUrl: currentProduct?.imagesUrl || "",
     category: currentProduct?.category || "",
     stock: currentProduct?.stock || "",
   };
 
   const [err, setErr] = useState("");
   const [inputs, setInputs] = useState({ ...initialState });
+  const api_key = import.meta.env.VITE_IMGBB_API_KEY;
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const [editProduct, { data, isError, isSuccess }] = useEditProductMutation();
+  const [editProduct, { data, isSuccess }] = useEditProductMutation();
 
   const handleOnChange = (e) => {
     setInputs({
@@ -32,15 +35,27 @@ const Admineditform = () => {
     });
   };
 
+  const handleImg = (e) => {
+    setImage(e.target.files[0]);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { name, description, category, imagesUrl, price, stock } = inputs;
+    const { name, description, category, price, stock } = inputs;
     const id = currentProduct?._id;
-    if (!name || !description || !category || !imagesUrl || !price || !stock) {
+    if (!name || !description || !category || !image || !price || !stock) {
       setErr("Please fullfill all input");
     } else {
-      editProduct({ data: { ...inputs }, id });
-      setErr("");
+      setLoading(true);
+      const formData = new FormData();
+      formData.append("image", image);
+      const url = `https://api.imgbb.com/1/upload?key=${api_key}`;
+      axios.post(url, formData).then((res) => {
+        if (res?.data?.data?.display_url) {
+          editProduct({ data: { ...inputs, imagesUrl: res?.data?.data?.display_url }, id });
+          setErr("");
+        }
+      });
     }
   };
 
@@ -72,7 +87,7 @@ const Admineditform = () => {
           <Input label="Price" type="number" name="price" onChange={handleOnChange} value={inputs.price} />
         </div>
         <div className="flex w-full items-end my-4 gap-4">
-          <Input label="Image" type="text" name="imagesUrl" onChange={handleOnChange} value={inputs.imagesUrl} />
+          <Input label="Image" type="file" name="imagesUrl" onChange={handleImg} />
         </div>
         <div className="flex w-full items-end my-4 gap-4">
           <Input
@@ -88,7 +103,7 @@ const Admineditform = () => {
         </div>
         <div>
           <Button type="submit" className=" my-4 w-full py-[10px] ">
-            Submit
+            {loading ? "Loading.." : "Submit"}
           </Button>
         </div>
       </form>
