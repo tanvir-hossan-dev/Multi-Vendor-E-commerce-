@@ -1,14 +1,31 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGetProductQuery } from "../../Redux/features/product/productApi";
+import { addProduct } from "../../Redux/features/product/productSlice";
 import Footer from "../Footer/Footer";
 import ReletedProducts from "../ReletedProducts/ReletedProducts";
 
 const ProductDeatils = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
   const { data } = useGetProductQuery();
+  const [quan, setQuan] = useState(1);
+  const [loading, setLoading] = useState(false);
   const product = data?.find((item) => item._id === id);
-  const { name, price, description, imagesUrl, _id, stock } = product || {};
+  const { name, price, description, imagesUrl, _id, stock, quantity } = product || {};
+
+  const products = useSelector((state) => state.product);
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    dispatch(addProduct({ ...product, quantity: quan }));
+    setLoading(true);
+    setTimeout(() => {
+      navigate("/cart");
+    }, 1500);
+  };
+
   return (
     <>
       <div className="w-[1200px] mx-auto mt-8">
@@ -24,12 +41,26 @@ const ProductDeatils = () => {
 
             <h6 className="mb-10">{description}</h6>
             <div className="flex mb-12">
-              <button className="btn btn-square btn-outline text-[32px]">-</button>
-              <h3 className="mx-[12px] text-[32px]">2</h3>
-              <button className="btn btn-square btn-outline text-[32px]">+</button>
+              <button
+                disabled={quan === 1}
+                className="btn btn-square btn-outline text-[22px]"
+                onClick={() => setQuan(quan - 1)}
+              >
+                -
+              </button>
+              <h3 className="mx-[12px] mt-2 text-[22px]">{quan}</h3>
+              <button
+                disabled={stock === quan}
+                className="btn btn-square btn-outline text-[22px]"
+                onClick={() => setQuan(quan + 1)}
+              >
+                +
+              </button>
             </div>
             <div className="card-actions justify-start mt-6">
-              <button className="btn btn-primary">Add To Cart</button>
+              <button className="btn btn-primary" onClick={handleSubmit}>
+                {loading ? "Submit" : "Add To Cart"}
+              </button>
             </div>
           </div>
         </div>

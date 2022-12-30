@@ -16,8 +16,6 @@ const Admindashboard = () => {
 
   const products = data?.length > 0 && data?.filter((item) => item.userId === user?._id);
 
-  console.log(products);
-
   useEffect(() => {
     if (!user?._id) navigate("/");
   }, [navigate, user]);
