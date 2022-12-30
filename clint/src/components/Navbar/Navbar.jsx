@@ -19,7 +19,7 @@ const Navbar = () => {
     <div className="navbar flex justify-between bg-gray-200">
       <div>
         <Link to="/" className="btn btn-ghost normal-case text-xl">
-          daisyUI
+          Daraz
         </Link>
       </div>
 
