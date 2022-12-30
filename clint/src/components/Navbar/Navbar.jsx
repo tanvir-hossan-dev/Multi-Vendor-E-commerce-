@@ -7,6 +7,7 @@ import gravatarUrl from "gravatar-url";
 
 const Navbar = () => {
   const { user, accessToken } = useSelector((state) => state.user);
+  const { card } = useSelector((state) => state.product);
   const dispatch = useDispatch();
 
   const hanldeLogOut = () => {
@@ -21,9 +22,7 @@ const Navbar = () => {
           daisyUI
         </Link>
       </div>
-      <div className="form-control w-[500px]">
-        <input type="text" placeholder="Search" className="input w-full input-bordered" />
-      </div>
+
       <div className="px-4">
         <ul className="menu menu-horizontal mr-8">
           <li>
@@ -32,7 +31,7 @@ const Navbar = () => {
           <li>
             <Link className="text-[22px]" to="/cart">
               {" "}
-              <BsCartCheckFill />
+              <BsCartCheckFill /> {card?.length > 0 && <div className="badge badge-primary">{card?.length}</div>}
             </Link>
           </li>
         </ul>
