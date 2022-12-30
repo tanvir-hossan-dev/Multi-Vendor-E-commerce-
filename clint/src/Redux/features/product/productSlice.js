@@ -11,7 +11,11 @@ export const productSlice = createSlice({
     addProduct: (state, action) => {
       state.card.push(action.payload);
     },
+    deleteProduct: (state, action) => {
+      console.log(action.payload);
+      state.card = state.card.filter((item) => item._id !== action.payload);
+    },
   },
 });
 
-export const { addProduct } = productSlice.actions;
+export const { addProduct, deleteProduct } = productSlice.actions;

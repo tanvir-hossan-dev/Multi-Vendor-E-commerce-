@@ -1,10 +1,16 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteProduct } from "../../Redux/features/product/productSlice";
 import Footer from "../Footer/Footer";
 
 const Cart = () => {
+  const dispatch = useDispatch();
   const { card } = useSelector((state) => state.product);
+
+  const handleDelete = (id) => {
+    dispatch(deleteProduct(id));
+  };
 
   return (
     <>
@@ -34,7 +40,7 @@ const Cart = () => {
                     </td>
 
                     <td>{product.quantity}</td>
-                    <td>
+                    <td onClick={() => handleDelete(product._id)}>
                       <div className="alert w-[80px] alert-error shadow-lg text-center">Delete</div>
                     </td>
                   </tr>
