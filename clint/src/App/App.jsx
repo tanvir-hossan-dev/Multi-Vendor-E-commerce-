@@ -44,10 +44,9 @@ function App() {
         <Route path="/productdeatils/:id" element={<ProductDeatils />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/vendordashboard" element={<Vendordashboard />} />
-        <Route path="/admindashboard" element={<Admindashboard />} />
-        <Route path="/vendorform" element={<Vendorform />} />
         <Route path="/vendoreditform/:id" element={<VendorEditForm />} />
-        <Route path="/adminaddform" element={<Adminaddform />} />
+        <Route path="/vendorform" element={<Vendorform />} /> <Route path="/adminaddform" element={<Adminaddform />} />
+        <Route path="/admindashboard" element={<Admindashboard />} />
         <Route path="/admineditform/:id" element={<Admineditform />} />
       </Routes>
     </BrowserRouter>

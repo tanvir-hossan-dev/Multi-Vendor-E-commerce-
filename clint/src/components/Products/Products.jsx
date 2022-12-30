@@ -3,7 +3,7 @@ import { useGetProductQuery } from "../../Redux/features/product/productApi";
 import Product from "./Product/Product";
 
 const Products = () => {
-  const { data, error } = useGetProductQuery();
+  const { data } = useGetProductQuery();
 
   return data?.length > 0 ? (
     <div className="w-[94%] mx-auto mt-[100px] ">
@@ -15,7 +15,7 @@ const Products = () => {
       </div>
     </div>
   ) : (
-    <div className="alert alert-error shadow-lg">
+    <div className="alert alert-error shadow-lg w-[94%] mx-auto mt-[100px]">
       <div>
         <span>Product not found!</span>
       </div>
