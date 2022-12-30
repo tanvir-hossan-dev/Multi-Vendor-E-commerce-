@@ -1,78 +1,16 @@
 import React from "react";
 
-const Categorie = () => {
+const Categorie = ({ product }) => {
+  const { imagesUrl, category } = product || {};
+
   return (
     <>
-      <div className="card  card-compact  bg-base-100 shadow-xl">
+      <div className="card h-[200px] card-compact  bg-base-100 shadow-xl">
         <figure>
-          <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
+          <img src={imagesUrl} alt="Shoes" />
         </figure>
         <div className="card-body ">
-          <h2 className="card-title justify-center">Shoes!</h2>
-        </div>
-      </div>
-      <div className="card  card-compact  bg-base-100 shadow-xl">
-        <figure>
-          <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
-        </figure>
-        <div className="card-body ">
-          <h2 className="card-title justify-center">Shoes!</h2>
-        </div>
-      </div>
-      <div className="card  card-compact  bg-base-100 shadow-xl">
-        <figure>
-          <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
-        </figure>
-        <div className="card-body ">
-          <h2 className="card-title justify-center">Shoes!</h2>
-        </div>
-      </div>
-      <div className="card  card-compact  bg-base-100 shadow-xl">
-        <figure>
-          <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
-        </figure>
-        <div className="card-body ">
-          <h2 className="card-title justify-center">Shoes!</h2>
-        </div>
-      </div>
-      <div className="card  card-compact  bg-base-100 shadow-xl">
-        <figure>
-          <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
-        </figure>
-        <div className="card-body ">
-          <h2 className="card-title justify-center">Shoes!</h2>
-        </div>
-      </div>
-      <div className="card  card-compact  bg-base-100 shadow-xl">
-        <figure>
-          <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
-        </figure>
-        <div className="card-body ">
-          <h2 className="card-title justify-center">Shoes!</h2>
-        </div>
-      </div>
-      <div className="card  card-compact  bg-base-100 shadow-xl">
-        <figure>
-          <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
-        </figure>
-        <div className="card-body ">
-          <h2 className="card-title justify-center">Shoes!</h2>
-        </div>
-      </div>
-      <div className="card  card-compact  bg-base-100 shadow-xl">
-        <figure>
-          <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
-        </figure>
-        <div className="card-body ">
-          <h2 className="card-title justify-center">Shoes!</h2>
-        </div>
-      </div>
-      <div className="card  card-compact  bg-base-100 shadow-xl">
-        <figure>
-          <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
-        </figure>
-        <div className="card-body ">
-          <h2 className="card-title justify-center">Shoes!</h2>
+          <h2 className="card-title justify-center">{category}</h2>
         </div>
       </div>
     </>
