@@ -28,7 +28,7 @@ const ProductDeatils = () => {
         navigate("/cart");
       }, 1500);
     } else {
-      navigate("/signinwithphone");
+      navigate("/login");
     }
   };
 

@@ -81,6 +81,14 @@ const Login = () => {
             </Link>
           </p>
         </div>
+        <div>
+          <p className="text-gray-800 text-right ">
+            SignIn with number
+            <Link className="text-black underline ml-[10px]" to="/signinwithphone">
+              number
+            </Link>
+          </p>
+        </div>
         {inputErr && (
           <div className="alert alert-error shadow-lg mt-4">
             <div>

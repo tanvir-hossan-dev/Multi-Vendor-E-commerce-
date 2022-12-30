@@ -75,7 +75,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal mr-8">
             {" "}
             <li>
-              <Link to="/signinwithphone">SignIn</Link>
+              <Link to="/login">SignIn</Link>
             </li>
           </ul>
         )}
