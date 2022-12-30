@@ -11,6 +11,7 @@ const ProductDeatils = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { data } = useGetProductQuery();
+  const { user } = useSelector((state) => state.user);
   const [quan, setQuan] = useState(1);
   const [loading, setLoading] = useState(false);
   const product = data?.find((item) => item._id === id);
@@ -20,11 +21,15 @@ const ProductDeatils = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    dispatch(addProduct({ ...product, quantity: quan }));
-    setLoading(true);
-    setTimeout(() => {
-      navigate("/cart");
-    }, 1500);
+    if (user?._id) {
+      dispatch(addProduct({ ...product, quantity: quan }));
+      setLoading(true);
+      setTimeout(() => {
+        navigate("/cart");
+      }, 1500);
+    } else {
+      navigate("/signinwithphone");
+    }
   };
 
   return (
