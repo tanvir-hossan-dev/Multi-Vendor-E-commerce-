@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import { useSelector } from "react-redux";
 import Footer from "../Footer/Footer";
 
@@ -7,6 +8,9 @@ const Cart = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Cart</title>
+      </Helmet>
       <div className="w-[94%] flex mx-auto mt-8">
         <div className="overflow-x-auto w-2/3">
           <table className="table table-zebra w-full">

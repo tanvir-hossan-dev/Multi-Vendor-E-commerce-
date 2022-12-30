@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetProductQuery } from "../../Redux/features/product/productApi";
@@ -28,6 +29,9 @@ const ProductDeatils = () => {
 
   return (
     <>
+      <Helmet>
+        <title>ProductDeatils</title>
+      </Helmet>
       <div className="w-[1200px] mx-auto mt-8">
         <div className="card lg:card-side bg-base-100 shadow-xl h-[400px]">
           <figure className="w-2/5 ">

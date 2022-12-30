@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAddProductMutation } from "../../../Redux/features/product/productApi";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 const Adminaddform = () => {
   const initialState = {
@@ -68,6 +69,9 @@ const Adminaddform = () => {
 
   return (
     <div className="w-[40%]  mx-auto mt-8 bg-[#f1f1f1] py-4 px-8 rounded-md ">
+      <Helmet>
+        <title>Adminaddform</title>
+      </Helmet>
       <h2 className="text-[30px] pb-[15px] text-center">Add Product</h2>
       <form onSubmit={handleSubmit}>
         <div className="flex w-full items-end my-4 gap-4">

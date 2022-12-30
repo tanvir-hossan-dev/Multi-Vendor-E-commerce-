@@ -5,6 +5,7 @@ import { auth } from "../../firebase/Firebase_Config";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const SignInWithNumber = () => {
   const [number, setNumber] = useState("");
@@ -57,6 +58,9 @@ const SignInWithNumber = () => {
   return (
     <>
       {" "}
+      <Helmet>
+        <title>SignIn Phone</title>
+      </Helmet>{" "}
       <div className="flex h-screen justify-center items-center ">
         {/* Send OTP */}
         <form onSubmit={handleSendOTP} className="w-[500px] p-[25px] bg-[#f1f1f1] rounded-md">

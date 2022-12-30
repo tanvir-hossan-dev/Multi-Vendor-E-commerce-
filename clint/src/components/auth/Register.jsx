@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "@material-tailwind/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserRegisterMutation } from "../../Redux/features/user/userApi";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const initialInputs = {
@@ -45,6 +46,9 @@ const Register = () => {
 
   return (
     <div className="flex h-screen justify-center items-center ">
+      <Helmet>
+        <title>SignUp</title>
+      </Helmet>
       <form onSubmit={handleSubmit} className="w-[500px] p-[25px] bg-[#f1f1f1] rounded-md">
         <h2 className="text-[30px] pb-[15px] text-center">Create Your Account</h2>
         <div className="w-full py-[10px]">

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEditProductMutation, useGetProductQuery } from "../../../Redux/features/product/productApi";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 const VendorEditForm = () => {
   const { data: getProduct } = useGetProductQuery();
@@ -69,6 +70,9 @@ const VendorEditForm = () => {
 
   return (
     <div className="w-[40%]  mx-auto mt-8 bg-[#f1f1f1] py-4 px-8 rounded-md ">
+      <Helmet>
+        <title>Vendor Edit Form</title>
+      </Helmet>
       <h2 className="text-[30px] pb-[15px] text-center">Update Product</h2>
       <form onSubmit={handleSubmit}>
         <div className="flex w-full items-end my-4 gap-4">

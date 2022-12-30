@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Input } from "@material-tailwind/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserLoginMutation } from "../../Redux/features/user/userApi";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const initialInputs = {
@@ -40,6 +41,9 @@ const Login = () => {
 
   return (
     <div className="flex h-screen justify-center items-center ">
+      <Helmet>
+        <title>SignIn</title>
+      </Helmet>
       <form onSubmit={handleSubmit} className="w-[500px] p-[25px] bg-[#f1f1f1] rounded-md">
         <h2 className="text-[30px] pb-[15px] text-center">Sign In Your Account</h2>
         <div className="w-full py-[10px]">

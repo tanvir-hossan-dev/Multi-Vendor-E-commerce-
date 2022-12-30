@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { useDeleteProductMutation, useGetProductQuery } from "../../Redux/features/product/productApi";
@@ -19,8 +20,12 @@ const Vendordashboard = () => {
   useEffect(() => {
     if (!user?._id) navigate("/");
   }, [navigate, user]);
+
   return (
     <div className="w-[94%]  mx-auto my-8">
+      <Helmet>
+        <title>Vendordashboard</title>
+      </Helmet>
       <div className="flex justify-end mb-4">
         <Link to="/vendorform" className="btn btn-primary mr-0">
           Add Product
