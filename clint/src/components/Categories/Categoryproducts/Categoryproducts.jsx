@@ -19,7 +19,7 @@ const Categoryproducts = () => {
             <h1 className="text-[42px] font-bold mb-4">{slug} Products</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-4">
               {products?.map((product) => (
-                <Product product={product} />
+                <Product key={product._id} product={product} />
               ))}
             </div>
           </div>

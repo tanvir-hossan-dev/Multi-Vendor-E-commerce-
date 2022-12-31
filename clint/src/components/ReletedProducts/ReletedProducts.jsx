@@ -9,7 +9,7 @@ const ReletedProducts = () => {
       <h1 className="text-[42px] font-bold mb-4">Releted Product</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-4">
         {data?.slice(0, 4)?.map((product) => (
-          <Product product={product} />
+          <Product key={product._id} product={product} />
         ))}
       </div>
     </div>

@@ -17,7 +17,7 @@ const Categories = () => {
           <h2 className="text-[42px] font-bold border-b-[3px]  border-solid border-gray-500">All Categories</h2>
           <div className="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-4">
             {data?.map((item) => (
-              <Categorie product={item} />
+              <Categorie key={item._id} product={item} />
             ))}
           </div>
         </div>
