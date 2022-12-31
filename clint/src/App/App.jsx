@@ -16,6 +16,7 @@ import Vendorform from "../components/Vendor Dashboard/Vendor Form/Vendorform";
 import VendorEditForm from "../components/Vendor Dashboard/Vendor Form/VendorEditForm";
 import Adminaddform from "../components/Admin Dashboard/Admin Form/Adminaddform";
 import Admineditform from "../components/Admin Dashboard/Admin Form/Admineditform";
+import Categoryproducts from "../components/Categories/Categoryproducts/Categoryproducts";
 
 function App() {
   const authChecked = useAuthCheck();
@@ -48,6 +49,7 @@ function App() {
         <Route path="/vendorform" element={<Vendorform />} /> <Route path="/adminaddform" element={<Adminaddform />} />
         <Route path="/admindashboard" element={<Admindashboard />} />
         <Route path="/admineditform/:id" element={<Admineditform />} />
+        <Route path="/categoryproducts/:slug" element={<Categoryproducts />} />
       </Routes>
     </BrowserRouter>
   );
