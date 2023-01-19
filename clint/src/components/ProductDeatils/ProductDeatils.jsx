@@ -7,7 +7,7 @@ import { addProduct } from "../../Redux/features/product/productSlice";
 import Footer from "../Footer/Footer";
 import ReletedProducts from "../ReletedProducts/ReletedProducts";
 
-const ProductDeatils = () => {
+const ProductDeatils = ({ search }) => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { data } = useGetProductQuery();
@@ -74,7 +74,7 @@ const ProductDeatils = () => {
           </div>
         </div>
       </div>
-      <ReletedProducts />
+      <ReletedProducts search={search} />
       <Footer />
     </>
   );

@@ -4,14 +4,14 @@ import Footer from "../Footer/Footer";
 import Products from "../Products/Products";
 import { Helmet } from "react-helmet-async";
 
-const Home = () => {
+const Home = ({ search }) => {
   return (
     <div>
       <Helmet>
         <title>Home</title>
       </Helmet>
       <Banner />
-      <Products />
+      <Products search={search} />
       <Footer />
     </div>
   );

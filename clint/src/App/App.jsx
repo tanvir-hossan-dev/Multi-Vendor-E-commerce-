@@ -17,9 +17,15 @@ import VendorEditForm from "../components/Vendor Dashboard/Vendor Form/VendorEdi
 import Adminaddform from "../components/Admin Dashboard/Admin Form/Adminaddform";
 import Admineditform from "../components/Admin Dashboard/Admin Form/Admineditform";
 import Categoryproducts from "../components/Categories/Categoryproducts/Categoryproducts";
+import { useState } from "react";
 
 function App() {
   const authChecked = useAuthCheck();
+  const [search, setSearch] = useState("");
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
 
   return !authChecked ? (
     <div className="w-screen h-screen flex justify-center items-center">
@@ -35,14 +41,14 @@ function App() {
     </div>
   ) : (
     <BrowserRouter>
-      <Navbar />
+      <Navbar search={search} searchFun={handleSearch} />
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signinwithphone" element={<SignInWithNumber />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home search={search} />} />
         <Route path="/categories" element={<Categories />} />
-        <Route path="/productdeatils/:id" element={<ProductDeatils />} />
+        <Route path="/productdeatils/:id" element={<ProductDeatils search={search} />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/vendordashboard" element={<Vendordashboard />} />
         <Route path="/vendoreditform/:id" element={<VendorEditForm />} />

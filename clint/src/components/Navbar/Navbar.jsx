@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { BsCartCheckFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogedOut } from "../../Redux/features/user/userSlice";
 import gravatarUrl from "gravatar-url";
 
-const Navbar = () => {
+const Navbar = ({ searchFun, search }) => {
   const { user, accessToken } = useSelector((state) => state.user);
   const { card } = useSelector((state) => state.product);
+
   const dispatch = useDispatch();
 
   const hanldeLogOut = () => {
@@ -16,11 +17,20 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar flex justify-between bg-gray-200">
+    <div className={`navbar flex justify-between sticky top-0 z-10 bg-gray-200`}>
       <div>
         <Link to="/" className="btn btn-ghost normal-case text-xl">
           Daraz
         </Link>
+      </div>
+      <div className="form-control w-[500px]">
+        <input
+          type="text"
+          placeholder="Search"
+          onChange={searchFun}
+          className="input w-full input-bordered"
+          value={search}
+        />
       </div>
 
       <div className="px-4">
